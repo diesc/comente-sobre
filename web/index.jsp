@@ -16,7 +16,7 @@
     <body>
         <div id="polaroid">
             <figure>
-                <a href="comentario/page1.htm">
+                <a href="metodo-agil/pagina-metodos-ageis.htm">
                     <img src="resources/img/image1.jpg" 
                          width="200" height="200" alt="Métodos Ageis" />
                 </a>
