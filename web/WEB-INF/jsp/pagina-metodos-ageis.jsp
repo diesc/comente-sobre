@@ -77,7 +77,7 @@
             </div>
 
             <div class="formAction">
-                <form:form action="page1.htm" method="GET" commandName="comentario">
+                <form:form action="pagina-metodos-ageis.htm" method="GET" commandName="comentario">
                     <table>
                         <tr>
                             <td>Nome :</td>
