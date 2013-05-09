@@ -1,6 +1,6 @@
 <%-- 
     Document   : page1
-    Created on : Apr 26, 2013, 2:25:59 PM
+    Created on : Apr 26, 2013, 2:26:06 PM
     Author     : HOME
 --%>
 
@@ -37,7 +37,7 @@
 
                         $.ajax({
                             type: "POST",
-                            url: "page3.htm",
+                            url: "page4.htm",
                             data: dataString,
                             cache: false,
                             success: function(html) {
@@ -52,17 +52,12 @@
                 });
             });
         </script>
-        <title>Programação</title>
+        <title>Redes Sociais</title>
     </head>
     <body>
-        <ul class="headerNav">
-            <li><a href="page1.htm" title="">Métodos Agéis</a></li>
-            <li><a href="page2.htm" title="">Cloud Computing</a></li>
-            <li><a href="page4.htm" title="">Redes Sociais</a></li>
-        </ul>
         <div class="wrapper">
             <div class="header">
-                <h1>Programação</h1>
+                <h1>Redes Sociais</h1>
             </div>
 
             <ul class="nav">
@@ -70,14 +65,15 @@
             </ul>
 
             <div class="main">
-                <h2>Programação.</h2>
+                <h2>Redes Sociais.</h2>
                 <p>Cum porta risus odio tincidunt? Ultrices, nascetur lundium tincidunt ridiculus? Enim nisi ac nec nec vel in ac pid ultricies nunc, cras porta ultrices. Hac lacus nisi non! Ut turpis, tempor eros? Tortor et, platea turpis scelerisque duis porttitor augue ridiculus nec et mid, sociis? Est ac a? Arcu elementum eros in ultrices dignissim pulvinar tincidunt elementum, hac platea hac. Purus et egestas vel, elementum facilisis, turpis sit augue ultricies, porta augue, enim massa cursus ac augue! Porta sed cras. Ut a augue ac in, dis pulvinar? Cras amet aenean magna adipiscing turpis mattis purus placerat, placerat nunc placerat urna.</p>
                 <p>Dis? Rhoncus ultricies porta purus habitasse cum dictumst urna dictumst sociis, porttitor augue rhoncus enim! Lundium, magnis adipiscing ut! Lorem in nascetur lorem sagittis urna! Quis eu rhoncus mid platea cras facilisis! Eros in facilisis! Urna sit ac montes. Rhoncus et eros urna lectus, adipiscing lorem ultrices natoque placerat, pid tincidunt magna mus, placerat pid velit tristique sit amet. Pulvinar nec, parturient eros cras, parturient nec lorem, dolor purus phasellus porttitor. In porta cras, dolor odio ac porta sociis et cras quis, augue quis cum nisi aliquam lorem, ut. Cras mattis, phasellus dignissim augue enim massa nascetur, sit ut.</p>
                 <p>Turpis purus aliquet. Habitasse placerat odio ac sociis mid, auctor cursus parturient eros! Lundium, vut, urna ridiculus? Penatibus ac et mus elementum. Sed magna augue, velit odio magna pellentesque a, lacus, aliquam elementum, in massa! Dapibus turpis, placerat purus, lectus in sagittis porta massa aenean! Turpis enim non adipiscing lundium parturient, a natoque egestas. Mid dictumst porta. Risus lorem aliquam velit mid, placerat! Et lectus sociis scelerisque ac turpis. Magna porta? Augue, augue in. Porta dolor, et amet, ac. Cum scelerisque tincidunt dignissim in, pellentesque habitasse! Elit? Mus porttitor in a nec, augue! Elit nisi purus? Porta platea integer.</p>
             </div>
 
             <div class="formAction">
-                <form:form action="page3.htm" method="GET" commandName="comentario">
+                <c:url var="urlComentario" value="/rede-social/salvar.htm"/>
+                <form:form modelAttribute="comentario" action="${urlComentario}" method="POST">
                     <table>
                         <tr>
                             <td>Nome :</td>

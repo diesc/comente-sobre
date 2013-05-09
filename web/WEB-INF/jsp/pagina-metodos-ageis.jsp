@@ -55,11 +55,6 @@
         <title>Métodos Agéis</title>
     </head>
     <body>
-        <ul class="headerNav">
-            <li><a href="page2.htm" title="">Cloud Computing</a></li>
-            <li><a href="page3.htm" title="">Programação</a></li>
-            <li><a href="page4.htm" title="">Redes Sociais</a></li>
-        </ul>
         <div class="wrapper">
             <div class="header">
                 <h1>Métodos Agéis</h1>
@@ -77,7 +72,8 @@
             </div>
 
             <div class="formAction">
-                <form:form action="pagina-metodos-ageis.htm" method="GET" commandName="comentario">
+                <c:url var="urlComentario" value="/metodo-agil/salvar.htm"/>
+                <form:form modelAttribute="comentario" action="${urlComentario}" method="POST">
                     <table>
                         <tr>
                             <td>Nome :</td>

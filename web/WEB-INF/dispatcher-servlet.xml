@@ -9,14 +9,14 @@
         http://www.springframework.org/schema/beans     
         http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
 
-    <bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping"/>
+    <!--<bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping"/>
     
     <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"/>
     
     <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"/>
     <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"/>
     
-    <!--<context:component-scan base-package="br.com.diego.controller"/>-->
+    <context:component-scan base-package="br.com.diego.controller"/>-->
     
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver" >
         <property name="prefix">
@@ -32,11 +32,23 @@
         <property name="sessionFactory" ref="SessionFactory"/>
     </bean>
 	
-    <bean name="comentario" class="br.com.diego.controller.ComentarioController" >
+    <!--<bean name="comentario" class="br.com.diego.controller.ComentarioController" >
+        <property name="comentarioDAO" ref="ComentarioDAO" />
+    </bean>-->
+    
+    <bean name="metodo-agil" class="br.com.diego.controller.MetodoAgilController" >
         <property name="comentarioDAO" ref="ComentarioDAO" />
     </bean>
     
-    <bean name="metodo-agil" class="br.com.diego.controller.MetodoAgilController" >
+    <bean name="cloud-computing" class="br.com.diego.controller.CloudComputingController" >
+        <property name="comentarioDAO" ref="ComentarioDAO" />
+    </bean>
+    
+    <bean name="programacao" class="br.com.diego.controller.ProgramacaoController" >
+        <property name="comentarioDAO" ref="ComentarioDAO" />
+    </bean>
+    
+    <bean name="rede-social" class="br.com.diego.controller.RedeSocialController" >
         <property name="comentarioDAO" ref="ComentarioDAO" />
     </bean>
     

@@ -23,21 +23,21 @@
                 <figcaption>Métodos Ageis</figcaption>
             </figure>
             <figure>
-                <a href="comentario/page2.htm">
+                <a href="cloud-computing/pagina-cloud-computing.htm">
                     <img src="resources/img/image2.jpg" 
                          width="200" height="200" alt="Cloud Computing" />
                 </a>
                 <figcaption>Cloud Computing</figcaption>
             </figure>
             <figure>
-                <a href="comentario/page3.htm">
+                <a href="programacao/pagina-programacao.htm">
                     <img src="resources/img/image3.jpg" 
                          width="200" height="200" alt="Programação" /> 
                 </a>
                 <figcaption>Programação</figcaption>
             </figure>
             <figure>
-                <a href="comentario/page4.htm">
+                <a href="rede-social/pagina-redes-sociais.htm">
                     <img src="resources/img/image4.jpg" 
                          width="200" height="200" alt="Redes Sociais" /> 
                 </a>

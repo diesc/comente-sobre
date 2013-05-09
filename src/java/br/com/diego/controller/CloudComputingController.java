@@ -16,11 +16,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 /**
  *
- * @author Diego
+ * @author disou_000
  */
 @Controller
-@RequestMapping("metodo-agil")
-public class MetodoAgilController {
+@RequestMapping("cloud-computing")
+public class CloudComputingController {
 
     private ComentarioDAO comentarioDAO;
 
@@ -29,7 +29,7 @@ public class MetodoAgilController {
         this.comentarioDAO = comentarioDAO;
     }
 
-    @RequestMapping(value = "/pagina-metodos-ageis.htm",
+    @RequestMapping(value = "/pagina-cloud-computing.htm",
             method = RequestMethod.GET)
     public ModelAndView page1() throws Exception {
 
@@ -37,7 +37,7 @@ public class MetodoAgilController {
         model.addAttribute("lista", comentarioDAO.listar());
         model.addAttribute("comentario", new Comentario());
 
-        return new ModelAndView("pagina-metodos-ageis", model);
+        return new ModelAndView("pagina-cloud-computing", model);
     }
 
     @RequestMapping(value = "salvar", method = RequestMethod.POST)
@@ -45,6 +45,7 @@ public class MetodoAgilController {
             throws Exception {
 
         comentarioDAO.adicionar(comentario);
-        return new ModelAndView("redirect:/metodo-agil/pagina-metodos-ageis.htm");
+        return new ModelAndView("redirect:/cloud-computing"
+                + "/pagina-cloud-computing.htm");
     }
 }
