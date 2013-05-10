@@ -15,8 +15,8 @@ import javax.persistence.Table;
 public class Comentario implements java.io.Serializable {
 
     private int cdCliente;
-    private String nmCliente;
-    private String nmClienteEmail;
+    private String nmCliente = null;
+    private String nmClienteEmail = null;
     private String nmClienteComentario;
 
     public Comentario() {
