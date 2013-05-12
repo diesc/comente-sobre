@@ -15,7 +15,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
         <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>"/>
-        <script type="text/javascript" src="<c:url value="/resources/js/jquery-1.9.1.js"/> " />
+        <script type="text/javascript" src="<c:url value="/resources/js/jquery-1.9.1.js"/> "></script>
         <script>
             $(document).ready(function() {
 
@@ -37,7 +37,7 @@
 
                         $.ajax({
                             type: "POST",
-                            url: "page2.htm",
+                            url: "http://localhost:8084/SpringComment/cloud-computing/pagina-cloud-computing.htm",
                             data: dataString,
                             cache: false,
                             success: function(html) {

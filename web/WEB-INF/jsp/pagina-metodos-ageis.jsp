@@ -15,7 +15,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
         <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>"/>
-        <script type="text/javascript" src="<c:url value="/resources/js/jquery-1.9.1.js"/> " />
+        <script type="text/javascript" src="<c:url value="/resources/js/jquery-1.9.1.js"/> "></script>
         <script>
             function doAjaxPost() {  
 	  // get the form values  
@@ -25,12 +25,12 @@
 	   
 	  $.ajax({  
 	    type: "POST",  
-	    url:  "http://localhost:8084/SpringComment/metodo-agil/salvar.htm",  
+	    url:  "http://localhost:8084/SpringComment/metodo-agil/pagina-metodos-ageis.htm",  
 	    data: "name=" + name + "&email=" + email + "&comment=" + comment,  
-	    success_msg: function(response){
+	    success: function(response){
 	      // we have the response 
 	      if(response.status === "SUCCESS"){
-	    	  userInfo = "<ol>";
+	    	  var userInfo = "<ol>";
 	    	  for(i =0 ; i < response.result.length ; i++){
 	    		  userInfo += "<br><li><b>Name</b> : " + response.result[i].name + 
 	    		  ";<b> Email</b> : " + response.result[i].email + 
@@ -54,7 +54,7 @@
 	      }	      
 	    },  
 	    error: function(e){  
-	      alert('Error: ' + e);  
+	      alert('Error mesmo: ' + e);  
 	    }  
 	  });  
 	}
@@ -96,9 +96,9 @@
                             <td><form:textarea path="nmClienteComentario" id="comment"/></td>
                         </tr>
                         <tr>
-                            <td colspan="2"><input type="submit" class="btn" value="Enviar" onclick="doAjaxPost();" ></td>
+                            <td colspan="2"><input type="submit" class="btn" value="Enviar" onclick="doAjaxPost()" ></td>
                         </tr>
-                        <tr><td colspan="2"><div id="info" id="success_msg"></div></td></tr>
+                        <tr><td colspan="2"><div id="info" class="success"></div></td></tr>
                     </table>
                 </form:form>
 
