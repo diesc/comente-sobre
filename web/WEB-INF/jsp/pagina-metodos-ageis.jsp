@@ -16,48 +16,41 @@
 
         <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>"/>
         <script type="text/javascript" src="<c:url value="/resources/js/jquery-1.9.1.js"/> "></script>
+
         <script>
-            function doAjaxPost() {  
-	  // get the form values  
-	  var name = $('#name').val();
-	  var email = $('#email').val();
-	  var comment = $('#comment').val();
-	   
-	  $.ajax({  
-	    type: "POST",  
-	    url:  "http://localhost:8084/SpringComment/metodo-agil/pagina-metodos-ageis.htm",  
-	    data: "name=" + name + "&email=" + email + "&comment=" + comment,  
-	    success: function(response){
-	      // we have the response 
-	      if(response.status === "SUCCESS"){
-	    	  var userInfo = "<ol>";
-	    	  for(i =0 ; i < response.result.length ; i++){
-	    		  userInfo += "<br><li><b>Name</b> : " + response.result[i].name + 
-	    		  ";<b> Email</b> : " + response.result[i].email + 
-                          ";<b> Comment</b> :" + response.result[i].comment;
-	    	  }
-	    	  userInfo += "</ol>";
-	    	  $('#info').html("User has been added to the list successfully. " + userInfo);
-	    	  $('#name').val('');
-		  $('#email').val('');
-		  $('#comment').val('');
-		      $('#error').hide('slow');
-		      $('#info').show('slow');
-	      }else{
-	    	  errorInfo = "";
-	    	  for(i =0 ; i < response.result.length ; i++){
-	    		  errorInfo += "<br>" + (i + 1) +". " + response.result[i].code;
-	    	  }
-	    	  $('#error').html("Please correct following errors: " + errorInfo);
-	    	  $('#info').hide('slow');
-	    	  $('#error').show('slow');
-	      }	      
-	    },  
-	    error: function(e){  
-	      alert('Error mesmo: ' + e);  
-	    }  
-	  });  
-	}
+            $(document).ready(function() {
+
+                $(".btn").click(function() {
+                    var str = $(comentario).serialize();
+
+                    var name = $("#name").val();
+                    var email = $("#email").val();
+                    var comment = $("#comment").val();
+
+                    var dataString = 'name=' + name +
+                            '&email=' + email +
+                            '&comment=' + comment;
+                    if (name === '' || email === '' || comment === '') {
+                        alert('Opss, preencha todos os campos!');
+                    } else {
+                        jQuery.ajax({
+                            type: "POST",
+                            url: "http://localhost:8084/SpringComment/adicionarContato.htm",
+                            data: str,
+                            async: false,
+                            cache: false,
+                            success: function(html) {
+                                $("#name").val('');
+                                $("#email").val('');
+                                $("#comment").val('');
+                                $(".success_msg").load('listaComentario.jsp .comment_box', html);
+
+                            }
+                        });
+                    }
+                    return false;
+                });
+            });
         </script>
         <title>Métodos Agéis</title>
     </head>
@@ -79,10 +72,9 @@
             </div>
 
             <div class="formAction">
-                <c:url var="urlComentario" value="/metodo-agil/salvar.htm"/>
-                <form:form modelAttribute="comentario" action="${urlComentario}" method="POST">
+                <c:url var="urlComentario" value="adicionarContato.htm"/>
+                <form:form commandName="comentario" action="${urlComentario}" method="POST">
                     <table>
-                        <tr><td colspan="2"><div id="error" class="error"></div></td></tr>
                         <tr>
                             <td>Nome :</td>
                             <td><form:input path="nmCliente" id="name"/></td>
@@ -96,22 +88,13 @@
                             <td><form:textarea path="nmClienteComentario" id="comment"/></td>
                         </tr>
                         <tr>
-                            <td colspan="2"><input type="submit" class="btn" value="Enviar" onclick="doAjaxPost()" ></td>
+                            <td colspan="2"><input type="submit" class="btn" value="Enviar" ></td>
                         </tr>
-                        <tr><td colspan="2"><div id="info" class="success"></div></td></tr>
                     </table>
                 </form:form>
 
-                <div id="success_msg">
-                    <c:forEach items="${lista}" var="comentario" varStatus="status">
-                        <c:if test="${status.count % 2 == 0}"></c:if>
-                            <div class="comment_box">
-                                <div class="body">
-                                    <span><p>${comentario.nmCliente}</p></span>
-                                <div class="txt">${comentario.nmClienteComentario}</div>
-                            </div>
-                        </div>
-                    </c:forEach>
+                <div class="success_msg">
+                    <jsp:include page="listaComentario.jsp"/>
                 </div>
             </div>
             <div class="footer">

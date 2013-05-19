@@ -7,6 +7,7 @@ package br.com.diego.dao;
 import br.com.diego.model.Comentario;
 import java.util.List;
 
+
 /**
  *
  * @author HOME
@@ -15,5 +16,7 @@ public interface ComentarioDAO {
     
     public void adicionar(Comentario comentario);
     public List<Comentario> listar();
+
+    
     
 }

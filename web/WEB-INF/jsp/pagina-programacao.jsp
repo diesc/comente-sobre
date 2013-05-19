@@ -15,7 +15,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
         <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>"/>
-        <script type="text/javascript" src="<c:url value="/resources/js/jquery-1.9.1.js"/> " />
+        <script type="text/javascript" src="<c:url value="/resources/js/jquery-1.9.1.js"/> "></script>
         <script>
             $(document).ready(function() {
 
@@ -35,7 +35,7 @@
                     else
                     {
 
-                        $.ajax({
+                        jQuery.ajax({
                             type: "POST",
                             url: "page3.htm",
                             data: dataString,
