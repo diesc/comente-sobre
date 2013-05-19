@@ -39,11 +39,11 @@
                             data: str,
                             async: false,
                             cache: false,
-                            success: function(html) {
+                            success: function() {
                                 $("#name").val('');
                                 $("#email").val('');
                                 $("#comment").val('');
-                                $(".success_msg").load('listaComentario.jsp .comment_box', html);
+                                $("#success_msg").load('http://localhost:8084/SpringComment/metodo-agil.htm  .comment_box');
 
                             }
                         });
@@ -93,8 +93,17 @@
                     </table>
                 </form:form>
 
-                <div class="success_msg">
-                    <jsp:include page="listaComentario.jsp"/>
+                <div id="success_msg">
+                    <c:forEach items="${listar}" var="comentario" varStatus="status">
+                        <c:if test="${status.count % 2 == 0}"></c:if>
+                            <div class="comment_box">
+                                <div class="body">
+                                    <span><p>${comentario.nmCliente}</p></span>
+                                <div class="txt">${comentario.nmClienteComentario}</div>
+                            </div>
+                        </div>
+                    </c:forEach>
+
                 </div>
             </div>
             <div class="footer">
