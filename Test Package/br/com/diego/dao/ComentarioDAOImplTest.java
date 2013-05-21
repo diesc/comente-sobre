@@ -20,7 +20,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * @author disou_000
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:WEB-INF/applicationContext.xml")
+@ContextConfiguration(locations = {"file:web/WEB-INF/applicationContextTest.xml"})
 public class ComentarioDAOImplTest {
     
     @Autowired

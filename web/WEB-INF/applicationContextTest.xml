@@ -32,4 +32,25 @@
             </props>
         </property>
     </bean>
+    
+    <bean id="ComentarioDAO" class="br.com.diego.dao.ComentarioDAOImpl">
+        <property name="sessionFactory" ref="SessionFactory"/>
+    </bean>
+    
+    <bean name="metodo-agil" class="br.com.diego.controller.MetodoAgilController" >
+        <property name="comentarioDAO" ref="ComentarioDAO" />
+    </bean>
+    
+    <bean name="cloud-computing" class="br.com.diego.controller.CloudComputingController" >
+        <property name="comentarioDAO" ref="ComentarioDAO" />
+    </bean>
+    
+    <bean name="programacao" class="br.com.diego.controller.ProgramacaoController" >
+        <property name="comentarioDAO" ref="ComentarioDAO" />
+    </bean>
+    
+    <bean name="rede-social" class="br.com.diego.controller.RedeSocialController" >
+        <property name="comentarioDAO" ref="ComentarioDAO" />
+    </bean>
+
 </beans>
