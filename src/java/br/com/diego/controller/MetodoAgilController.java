@@ -40,8 +40,7 @@ public class MetodoAgilController {
 
     @RequestMapping(value = "/adicionarContato", method = RequestMethod.POST)
     public ModelAndView adicionarContato(
-            @ModelAttribute("comentario") Comentario comentario,
-            BindingResult result) {
+            @ModelAttribute("comentario") Comentario comentario) {
 
 
         comentarioDAO.adicionar(comentario);

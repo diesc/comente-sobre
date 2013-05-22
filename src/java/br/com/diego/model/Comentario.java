@@ -15,8 +15,8 @@ import javax.persistence.Table;
 public class Comentario implements java.io.Serializable {
 
     private int cdCliente;
-    private String nmCliente = null;
-    private String nmClienteEmail = null;
+    private String nmCliente;
+    private String nmClienteEmail;
     private String nmClienteComentario;
 
     public Comentario() {
@@ -26,9 +26,9 @@ public class Comentario implements java.io.Serializable {
         this.cdCliente = cdCliente;
     }
 
-    public Comentario(int cdCliente, String nmCliente, String nmClienteEmail,
+    public Comentario(String nmCliente, String nmClienteEmail,
             String nmClienteComentario) {
-        this.cdCliente = cdCliente;
+
         this.nmCliente = nmCliente;
         this.nmClienteEmail = nmClienteEmail;
         this.nmClienteComentario = nmClienteComentario;
