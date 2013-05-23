@@ -11,17 +11,10 @@
         http://www.springframework.org/schema/beans     
         http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
 
-    <!--<bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping"/>
-    
-    <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"/>
-    
-    <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"/>
-    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"/>-->
-    
-    
-    
+    <!--@Controller modelo de programação -->
     <mvc:annotation-driven />
     
+    <!--Definindo os nomes das views protegidas -->
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver" >
         <property name="prefix">
             <value>/WEB-INF/jsp/</value>
@@ -31,15 +24,12 @@
         </property>
         
     </bean>
-
+    
+    <!--Mapeando os @Controller e a conexão com a classe DAO -->
     <bean id="ComentarioDAO" class="br.com.diego.dao.ComentarioDAOImpl">
         <property name="sessionFactory" ref="SessionFactory"/>
     </bean>
-	
-    <!--<bean name="comentario" class="br.com.diego.controller.ComentarioController" >
-        <property name="comentarioDAO" ref="ComentarioDAO" />
-    </bean>-->
-    
+        
     <bean name="metodo-agil" class="br.com.diego.controller.MetodoAgilController" >
         <property name="comentarioDAO" ref="ComentarioDAO" />
     </bean>

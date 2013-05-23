@@ -1,5 +1,5 @@
 <%-- 
-    Document   : page2
+    Document   : pagina-cloud-computing
     Created on : Apr 26, 2013, 2:24:03 PM
     Author     : HOME
 --%>
@@ -19,38 +19,34 @@
         <script>
             $(document).ready(function() {
 
-                $(".formAction").emotions();
-                $(".btn").click(function() {
-                    var name = $("#name").val();
-                    var email = $("#email").val();
-                    var comment = $("#comment").val();
-                    var dataString = 'name=' + name +
-                            '&email=' + email +
-                            '&comment=' + comment;
-                    if (name === '' || email === '' || comment === '')
-                    {
-                        alert('Opss, preencha todos os campos!');
-                    }
+            $(".btn").click(function() {
+                var str = $(comentario).serialize();
 
-                    else
-                    {
+                var name = $("#name").val();
+                var email = $("#email").val();
+                var comment = $("#comment").val();
+                
+                if (name === '' || email === '' || comment === '') {
+                    alert('Opss, preencha todos os campos!');
+                } else {
+                    jQuery.ajax({
+                        type: "POST",
+                        url: "/comente-sobre/adicionarCloud.htm",
+                        data: str,
+                        async: false,
+                        cache: false,
+                        success: function() {
+                            $("#name").val('');
+                            $("#email").val('');
+                            $("#comment").val('');
+                            $("#success_msg").load('/comente-sobre/cloud-computing.htm  .comment_box');
 
-                        $.ajax({
-                            type: "POST",
-                            url: "http://localhost:8084/SpringComment/cloud-computing/pagina-cloud-computing.htm",
-                            data: dataString,
-                            cache: false,
-                            success: function(html) {
-                                $("#name").val('');
-                                $("#comment").val('');
-                                $("#success_msg").prepend(html);
-                                ;
-                            }
-                        });
-                    }
-                    return false;
-                });
+                        }
+                    });
+                }
+                return false;
             });
+        });
         </script>
         <title>Cloud Computing</title>
     </head>
@@ -61,7 +57,7 @@
             </div>
 
             <ul class="nav">
-                <li><a href="/SpringComment/">Home</a></li>
+                <li><a href="/comente-sobre/">Home</a></li>
             </ul>
 
             <div class="main">
@@ -72,7 +68,7 @@
             </div>
 
             <div class="formAction">
-                <c:url var="urlComentario" value="/cloud-computing/salvar.htm"/>
+                <c:url var="urlComentario" value="adicionarCloud.htm"/>
                 <form:form modelAttribute="comentario" action="${urlComentario}" method="POST">
                     <table>
                         <tr>
@@ -94,15 +90,7 @@
                 </form:form>
 
                 <div id="success_msg">
-                    <c:forEach items="${lista}" var="comentario" varStatus="status">
-                        <c:if test="${status.count % 2 == 0}"></c:if>
-                            <div class="comment_box">
-                                <div class="body">
-                                    <span><p>${comentario.nmCliente}</p></span>
-                                <div class="txt">${comentario.nmClienteComentario}</div>
-                            </div>
-                        </div>
-                    </c:forEach>
+                    <jsp:include page="listaComentario.jsp"/>
                 </div>
             </div>
             <div class="footer">

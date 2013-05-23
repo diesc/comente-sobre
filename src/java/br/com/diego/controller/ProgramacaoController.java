@@ -16,35 +16,52 @@ import org.springframework.web.servlet.ModelAndView;
 
 /**
  *
- * @author disou_000
+ * @author Diego Classe controladora do sisteme de comentários da página
+ * programacao
+ *
  */
 @Controller()
-@RequestMapping("programacao")
 public class ProgramacaoController {
 
+    @Autowired
     private ComentarioDAO comentarioDAO;
 
-    @Autowired
+    /**
+     *
+     * @param comentarioDAO
+     */
     public void setComentarioDAO(ComentarioDAO comentarioDAO) {
         this.comentarioDAO = comentarioDAO;
     }
 
-    @RequestMapping(value = "/pagina-programacao.htm",
-            method = RequestMethod.GET)
-    public ModelAndView page1() throws Exception {
+    /**
+     * Método ModelAndView para carregar e listar os comentarios no form da
+     * página pagina-programacao
+     *
+     * @param model
+     * @return pagina-programacao
+     */
+    @RequestMapping(value = "/programacao", method = RequestMethod.GET)
+    public ModelAndView mostrarPagina(ModelMap model) {
 
-        ModelMap model = new ModelMap();
-        model.addAttribute("lista", comentarioDAO.listar());
+        model.addAttribute("listar", comentarioDAO.listar());
         model.addAttribute("comentario", new Comentario());
 
         return new ModelAndView("pagina-programacao", model);
     }
 
-    @RequestMapping(value = "salvar", method = RequestMethod.POST)
-    public ModelAndView add(@ModelAttribute("comentario") Comentario comentario)
-            throws Exception {
+    /**
+     * Método ModelAndView para adicionar ao banco o nome, email e o comentario
+     * do usuário no método mostrarPagina
+     *
+     * @param comentario
+     * @return redirect:programacao.htm
+     */
+    @RequestMapping(value = "/adicionarPrograma", method = RequestMethod.POST)
+    public ModelAndView adicionarComentario(
+            @ModelAttribute("comentario") Comentario comentario) {
 
         comentarioDAO.adicionar(comentario);
-        return new ModelAndView("redirect:/programacao/pagina-programacao.htm");
+        return new ModelAndView("redirect:programacao.htm");
     }
 }

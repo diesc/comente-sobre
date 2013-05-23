@@ -1,5 +1,5 @@
 <%-- 
-    Document   : page1
+    Document   : pagina-metodos-ageis
     Created on : Apr 26, 2013, 2:23:44 PM
     Author     : HOME
 --%>
@@ -16,42 +16,39 @@
 
         <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>"/>
         <script type="text/javascript" src="<c:url value="/resources/js/jquery-1.9.1.js"/> "></script>
+        <script type="text/javascript">
+        $(document).ready(function() {
 
-        <script>
-            $(document).ready(function() {
+            $(".btn").click(function() {
+                var str = $(comentario).serialize();
 
-                $(".btn").click(function() {
-                    var str = $(comentario).serialize();
+                var name = $("#name").val();
+                var email = $("#email").val();
+                var comment = $("#comment").val();
+                
+                if (name === '' || email === '' || comment === '') {
+                    alert('Opss, preencha todos os campos!');
+                } else {
+                    jQuery.ajax({
+                        type: "POST",
+                        url: "/comente-sobre/adicionarMetodo.htm",
+                        data: str,
+                        async: false,
+                        cache: false,
+                        success: function() {
+                            $("#name").val('');
+                            $("#email").val('');
+                            $("#comment").val('');
+                            $("#success_msg").load('/comente-sobre/metodos-ageis.htm  .comment_box');
 
-                    var name = $("#name").val();
-                    var email = $("#email").val();
-                    var comment = $("#comment").val();
-
-                    var dataString = 'name=' + name +
-                            '&email=' + email +
-                            '&comment=' + comment;
-                    if (name === '' || email === '' || comment === '') {
-                        alert('Opss, preencha todos os campos!');
-                    } else {
-                        jQuery.ajax({
-                            type: "POST",
-                            url: "http://localhost:8084/SpringComment/adicionarContato.htm",
-                            data: str,
-                            async: false,
-                            cache: false,
-                            success: function() {
-                                $("#name").val('');
-                                $("#email").val('');
-                                $("#comment").val('');
-                                $("#success_msg").load('http://localhost:8084/SpringComment/metodo-agil.htm  .comment_box');
-
-                            }
-                        });
-                    }
-                    return false;
-                });
+                        }
+                    });
+                }
+                return false;
             });
-        </script>
+        });
+    </script>
+        
         <title>Métodos Agéis</title>
     </head>
     <body>
@@ -61,7 +58,7 @@
             </div>
 
             <ul class="nav">
-                <li><a href="/SpringComment/">Home</a></li>
+                <li><a href="/comente-sobre/">Home</a></li>
             </ul>
 
             <div class="main">
@@ -72,7 +69,7 @@
             </div>
 
             <div class="formAction">
-                <c:url var="urlComentario" value="adicionarContato.htm"/>
+                <c:url var="urlComentario" value="adicionarMetodo.htm"/>
                 <form:form commandName="comentario" action="${urlComentario}" method="POST">
                     <table>
                         <tr>
@@ -94,16 +91,7 @@
                 </form:form>
 
                 <div id="success_msg">
-                    <c:forEach items="${listar}" var="comentario" varStatus="status">
-                        <c:if test="${status.count % 2 == 0}"></c:if>
-                            <div class="comment_box">
-                                <div class="body">
-                                    <span><p>${comentario.nmCliente}</p></span>
-                                <div class="txt">${comentario.nmClienteComentario}</div>
-                            </div>
-                        </div>
-                    </c:forEach>
-
+                    <jsp:include page="listaComentario.jsp"/>
                 </div>
             </div>
             <div class="footer">
@@ -111,4 +99,6 @@
             </div>
         </div>
     </body>
+    
+    
 </html>

@@ -16,36 +16,52 @@ import org.springframework.web.servlet.ModelAndView;
 
 /**
  *
- * @author disou_000
+ * @author disou_000 Classe controladora do sisteme de comentários da página
+ * cloud-computing
  */
 @Controller
-@RequestMapping("cloud-computing")
 public class CloudComputingController {
 
+    @Autowired
     private ComentarioDAO comentarioDAO;
 
-    @Autowired
+    /**
+     *
+     * @param comentarioDAO controlar as entradas dos métodos: adicionar e
+     * listar da classe ComentarioDAO
+     */
     public void setComentarioDAO(ComentarioDAO comentarioDAO) {
         this.comentarioDAO = comentarioDAO;
     }
 
-    @RequestMapping(value = "/pagina-cloud-computing.htm",
-            method = RequestMethod.GET)
-    public ModelAndView page1() throws Exception {
+    /**
+     * Método ModelAndView para carregar e listar os comentarios no form da
+     * página pagina-cloud-computing
+     *
+     * @param model
+     * @return pagina-cloud-computing
+     */
+    @RequestMapping(value = "/cloud-computing", method = RequestMethod.GET)
+    public ModelAndView mostrarPagina(ModelMap model) {
 
-        ModelMap model = new ModelMap();
-        model.addAttribute("lista", comentarioDAO.listar());
+        model.addAttribute("listar", comentarioDAO.listar());
         model.addAttribute("comentario", new Comentario());
 
         return new ModelAndView("pagina-cloud-computing", model);
     }
 
-    @RequestMapping(value = "salvar", method = RequestMethod.POST)
-    public ModelAndView add(@ModelAttribute("comentario") Comentario comentario)
-            throws Exception {
+    /**
+     * Método ModelAndView para adicionar ao banco o nome, email e o comentario
+     * do usuário no método mostrarPagina
+     *
+     * @param comentario
+     * @return redirect:cloud-computing.htm
+     */
+    @RequestMapping(value = "/adicionarCloud", method = RequestMethod.POST)
+    public ModelAndView adicionarComentario(
+            @ModelAttribute("comentario") Comentario comentario) {
 
         comentarioDAO.adicionar(comentario);
-        return new ModelAndView("redirect:/cloud-computing"
-                + "/pagina-cloud-computing.htm");
+        return new ModelAndView("redirect:cloud-computing.htm");
     }
 }

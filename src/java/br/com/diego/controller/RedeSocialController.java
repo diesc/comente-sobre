@@ -16,36 +16,51 @@ import org.springframework.web.servlet.ModelAndView;
 
 /**
  *
- * @author disou_000
+ * @author disou_000 Classe controladora do sisteme de comentários da página
+ * redes sociais
  */
 @Controller
-@RequestMapping("rede-social")
 public class RedeSocialController {
 
+    @Autowired
     private ComentarioDAO comentarioDAO;
 
-    @Autowired
+    /**
+     *
+     * @param comentarioDAO
+     */
     public void setComentarioDAO(ComentarioDAO comentarioDAO) {
         this.comentarioDAO = comentarioDAO;
     }
 
-    @RequestMapping(value = "/pagina-redes-sociais.htm",
-            method = RequestMethod.GET)
-    public ModelAndView page1() throws Exception {
+    /**
+     * Método ModelAndView para carregar e listar os comentarios no form da
+     * página pagina-redes-sociais
+     *
+     * @param model
+     * @return pagina-redes-sociais.htm
+     */
+    @RequestMapping(value = "/redes-sociais", method = RequestMethod.GET)
+    public ModelAndView mostrarPagina(ModelMap model) {
 
-        ModelMap model = new ModelMap();
-        model.addAttribute("lista", comentarioDAO.listar());
+        model.addAttribute("listar", comentarioDAO.listar());
         model.addAttribute("comentario", new Comentario());
 
         return new ModelAndView("pagina-redes-sociais", model);
     }
 
-    @RequestMapping(value = "salvar", method = RequestMethod.POST)
-    public ModelAndView add(@ModelAttribute("comentario") Comentario comentario)
-            throws Exception {
+    /**
+     * Método ModelAndView para adicionar ao banco o nome, email e o comentario
+     * do usuário no método mostrarPagina
+     *
+     * @param comentario
+     * @return return:redes-sociais.htm
+     */
+    @RequestMapping(value = "/adicionarRede", method = RequestMethod.POST)
+    public ModelAndView adicionarComentario(
+            @ModelAttribute("comentario") Comentario comentario) {
 
         comentarioDAO.adicionar(comentario);
-        return new ModelAndView("redirect:/rede-social"
-                + "/pagina-redes-sociais.htm");
+        return new ModelAndView("redirect:redes-sociais.htm");
     }
 }

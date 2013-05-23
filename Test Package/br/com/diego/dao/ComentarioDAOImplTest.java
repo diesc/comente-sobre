@@ -17,40 +17,56 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  *
- * @author disou_000
+ * @author Diego Classe que testa a conexão com banco de dados, armazenamento
+ * dos arquivos e suas listagens
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"file:web/WEB-INF/applicationContextTest.xml"})
+@ContextConfiguration(
+        locations = {"file:web/WEB-INF/applicationContextTest.xml"})
 public class ComentarioDAOImplTest {
-    
+
     @Autowired
     private ComentarioDAO comentarioDAO;
     private Comentario comentario;
 
+    /**
+     *
+     * @param comentarioDAO controla as entradas dos métodos: adicionar e listar
+     * da classe ComentarioDAO
+     */
     public void setComentarioDAO(ComentarioDAO comentarioDAO) {
         this.comentarioDAO = comentarioDAO;
     }
 
+    /**
+     * Configurando as instâncias de entrada de dados na classe Comentario Nome:
+     * Teste, Email: teste@teste.com.br Comentario: Testando!
+     */
     @Before
     public void setUp() {
-        comentario = new Comentario();
+        comentario = new Comentario("Teste", "teste@teste.com.br", "Testado!");
     }
 
+    /**
+     * Testa o método adicionar. Inserido as entradas definidas no método: newm
+     * Comentario() da classe Comentario
+     */
     @Test
     public void testAdicionarComentario() {
         try {
-            comentario.setNmCliente("Diego");
-            comentario.setNmClienteEmail("test@test.com");
-            comentario.setNmClienteComentario("Testando e comentando");
+
             comentarioDAO.adicionar(comentario);
 
         } catch (Exception e) {
-            Assert.fail("Something was going wrong!");
+            Assert.fail("Something was going wrong!" + e);
         }
     }
-    
+
+    /**
+     * Testa o método listar
+     */
     @Test
-    public void testListarComentario(){
+    public void testListarComentario() {
         assertFalse(comentarioDAO.listar().isEmpty());
     }
 }

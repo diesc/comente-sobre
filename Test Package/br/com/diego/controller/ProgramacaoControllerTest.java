@@ -4,11 +4,12 @@
  */
 package br.com.diego.controller;
 
-import static org.junit.Assert.*;
-
 import br.com.diego.dao.ComentarioDAO;
 import br.com.diego.model.Comentario;
 import java.util.List;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,18 +23,18 @@ import org.springframework.web.servlet.ModelAndView;
 /**
  *
  * @author Diego Classe que testa o funcionamento da classe controller
- * MetodoAgilController
+ * ProgramacaoController
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(
         locations = {" file:web/WEB-INF/applicationContextTest.xml"})
-public class MetodoAgilControllerTest {
+public class ProgramacaoControllerTest {
 
     @Autowired
     private ComentarioDAO comentarioDAO;
     private Comentario comentario;
     @Autowired
-    private MetodoAgilController controller;
+    private ProgramacaoController controller;
     private ModelMap model;
 
     /**
@@ -43,11 +44,11 @@ public class MetodoAgilControllerTest {
     @Before
     public void setUp() {
         model = new ExtendedModelMap();
-        comentario = new Comentario("Teste", "teste@teste.com", "Agil!");
+        comentario = new Comentario("Teste", "teste@teste.com", "Programacao!");
     }
 
     /**
-     * Testa o método mostrarPagina da classe: MetodoAgilController
+     * Testa o método mostrarPagina da classe: ProgramacaoController
      */
     @Test
     public void testMostrarPagina() {
@@ -57,19 +58,19 @@ public class MetodoAgilControllerTest {
         List comentarios = (List<Comentario>) model.get("listar");
 
         ModelAndView view = controller.mostrarPagina(model);
-        assertEquals("pagina-metodos-ageis", view.getViewName());
+        assertEquals("pagina-programacao", view.getViewName());
         assertNotNull(view.getModelMap().get("comentario"));
         assertFalse(view.getModelMap().containsValue(comentarios));
     }
 
     /**
-     * Testa o método adicionarComentario da classe: MetodoAgilController
+     * Testa o método adicionarComentario da classe: ProgramacaoController
      */
     @Test
     public void testAdicionarComentario() {
 
         ModelAndView view = controller.adicionarComentario(comentario);
-        assertEquals("redirect:metodos-ageis.htm", view.getViewName());
+        assertEquals("redirect:programacao.htm", view.getViewName());
         assertFalse(view.getModelMap().containsValue(comentario));
 
 

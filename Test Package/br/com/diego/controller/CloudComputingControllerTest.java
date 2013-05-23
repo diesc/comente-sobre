@@ -22,18 +22,19 @@ import org.springframework.web.servlet.ModelAndView;
 /**
  *
  * @author Diego Classe que testa o funcionamento da classe controller
- * MetodoAgilController
+ * CloudComputingController
+ *
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(
         locations = {" file:web/WEB-INF/applicationContextTest.xml"})
-public class MetodoAgilControllerTest {
+public class CloudComputingControllerTest {
 
     @Autowired
     private ComentarioDAO comentarioDAO;
     private Comentario comentario;
     @Autowired
-    private MetodoAgilController controller;
+    private CloudComputingController controller;
     private ModelMap model;
 
     /**
@@ -43,11 +44,11 @@ public class MetodoAgilControllerTest {
     @Before
     public void setUp() {
         model = new ExtendedModelMap();
-        comentario = new Comentario("Teste", "teste@teste.com", "Agil!");
+        comentario = new Comentario("Teste", "teste@teste.com", "Cloud");
     }
 
     /**
-     * Testa o método mostrarPagina da classe: MetodoAgilController
+     * Testa o método mostrarPagina da classe: CloudComputingController
      */
     @Test
     public void testMostrarPagina() {
@@ -57,19 +58,19 @@ public class MetodoAgilControllerTest {
         List comentarios = (List<Comentario>) model.get("listar");
 
         ModelAndView view = controller.mostrarPagina(model);
-        assertEquals("pagina-metodos-ageis", view.getViewName());
+        assertEquals("pagina-cloud-computing", view.getViewName());
         assertNotNull(view.getModelMap().get("comentario"));
         assertFalse(view.getModelMap().containsValue(comentarios));
     }
 
     /**
-     * Testa o método adicionarComentario da classe: MetodoAgilController
+     * Testa o método adicionarComentario da classe: CloudComputingController
      */
     @Test
     public void testAdicionarComentario() {
 
         ModelAndView view = controller.adicionarComentario(comentario);
-        assertEquals("redirect:metodos-ageis.htm", view.getViewName());
+        assertEquals("redirect:cloud-computing.htm", view.getViewName());
         assertFalse(view.getModelMap().containsValue(comentario));
 
 

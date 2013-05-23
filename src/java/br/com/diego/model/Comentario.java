@@ -19,13 +19,26 @@ public class Comentario implements java.io.Serializable {
     private String nmClienteEmail;
     private String nmClienteComentario;
 
+    /**
+     *
+     */
     public Comentario() {
     }
 
+    /**
+     *
+     * @param cdCliente
+     */
     public Comentario(int cdCliente) {
         this.cdCliente = cdCliente;
     }
 
+    /**
+     *
+     * @param nmCliente
+     * @param nmClienteEmail
+     * @param nmClienteComentario
+     */
     public Comentario(String nmCliente, String nmClienteEmail,
             String nmClienteComentario) {
 
@@ -34,6 +47,10 @@ public class Comentario implements java.io.Serializable {
         this.nmClienteComentario = nmClienteComentario;
     }
 
+    /**
+     *
+     * @return
+     */
     @Id
     @GeneratedValue
     @Column(name = "CD_CLIENTE")
@@ -41,33 +58,61 @@ public class Comentario implements java.io.Serializable {
         return this.cdCliente;
     }
 
+    /**
+     *
+     * @param cdCliente
+     */
     public void setCdCliente(int cdCliente) {
         this.cdCliente = cdCliente;
     }
 
+    /**
+     *
+     * @return
+     */
     @Column(name = "NM_CLIENTE")
     public String getNmCliente() {
         return this.nmCliente;
     }
 
+    /**
+     *
+     * @param nmCliente
+     */
     public void setNmCliente(String nmCliente) {
         this.nmCliente = nmCliente;
     }
 
+    /**
+     *
+     * @return
+     */
     @Column(name = "NM_CLIENTE_EMAIL")
     public String getNmClienteEmail() {
         return this.nmClienteEmail;
     }
 
+    /**
+     *
+     * @param nmClienteEmail
+     */
     public void setNmClienteEmail(String nmClienteEmail) {
         this.nmClienteEmail = nmClienteEmail;
     }
 
+    /**
+     *
+     * @return
+     */
     @Column(name = "NM_CLIENTE_COMENTARIO")
     public String getNmClienteComentario() {
         return this.nmClienteComentario;
     }
 
+    /**
+     *
+     * @param nmClienteComentario
+     */
     public void setNmClienteComentario(String nmClienteComentario) {
         this.nmClienteComentario = nmClienteComentario;
     }

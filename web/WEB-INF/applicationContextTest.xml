@@ -9,7 +9,7 @@
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
 
     
-    
+    <!--XML criado para testar a conexão com banco de dados -->
     <bean id="DataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="org.apache.derby.jdbc.ClientDriver"/>
         <property name="url" value="jdbc:derby://localhost:1527/Responsive"/>
